@@ -10,4 +10,13 @@
     <string name="todo_checkbox">To do</string>
     <string name="cancel_button">Cancel</string>
     <string name="ok_button">OK</string>
+
+    <string name="sound_checkbox">On or Off</string>
+    <string name="settings_title">Settings</string>
+    <string name="sound_title">Sound</string>
+    <string name="amims_title">Animation Speed</string>
+    <string name="rb_fast">Fast</string>
+    <string name="rb_slow">Slow</string>
+    <string name="rb_none">None</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

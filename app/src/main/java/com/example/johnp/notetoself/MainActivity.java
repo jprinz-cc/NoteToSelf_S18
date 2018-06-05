@@ -14,6 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.content.Intent;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private NoteAdapter mNoteAdapter;
+    private boolean mSound;
+    private int mAnimOption;
+    private SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        mPrefs = getSharedPreferences("Note to self", MODE_PRIVATE);
+        mSound  = mPrefs.getBoolean("sound", true);
+        mAnimOption = mPrefs.getInt("sort option", SettingsActivity.FAST);
+    }
+
     public void createNewNote(Note n){
 
         mNoteAdapter.addNote(n);
@@ -85,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 

@@ -39,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
 
         listNote.setAdapter(mNoteAdapter);
 
+        // So we can long click it
+        listNote.setLongClickable(true);
+
+        // Now to detect long clicks and delete the note
+        listNote.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> adapter, View view,
+                                           int whichItem, long id) {
+
+                // Ask NoteAdapter to delete this entry
+                mNoteAdapter.deleteNote(whichItem);
+
+                return true;
+            }
+        });
+
 
 		// Handle clicks on the ListView
         listNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -218,6 +234,15 @@ public class MainActivity extends AppCompatActivity {
             notifyDataSetChanged();
 
         }
+
+        public void deleteNote(int n){
+
+            noteList.remove(n);
+            notifyDataSetChanged();
+
+
+        }
+
 
 
     }
